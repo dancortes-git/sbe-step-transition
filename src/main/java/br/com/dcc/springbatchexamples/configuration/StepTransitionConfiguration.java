@@ -56,7 +56,7 @@ public class StepTransitionConfiguration {
 		return jobBuilderFactory.get("StepTransitionJob")
 				/*
 				 * Traditional way...
-				 */
+				*/
 				.start(stepTransitionStep1(stepBuilderFactory))
 				.next(stepTransitionStep2(stepBuilderFactory))
 				.next(stepTransitionStep3(stepBuilderFactory))
@@ -64,12 +64,14 @@ public class StepTransitionConfiguration {
 
 				/*
 				 *  Another way...
-				 */
-//				.start(stepTransitionStep1())
-//				.on("COMPLETED").to(stepTransitionStep2())
-//				.from(stepTransitionStep2()).on("COMPLETED").to(stepTransitionStep3())
-//				.from(stepTransitionStep3()).end()
-//				.build();
+
+				.start(stepTransitionStep1(stepBuilderFactory))
+				.on("COMPLETED").to(stepTransitionStep2(stepBuilderFactory))
+				.from(stepTransitionStep2(stepBuilderFactory))
+				.on("COMPLETED").to(stepTransitionStep3(stepBuilderFactory))
+				.from(stepTransitionStep3(stepBuilderFactory)).end()
+				.build();
+				*/
 	}
 
 }
